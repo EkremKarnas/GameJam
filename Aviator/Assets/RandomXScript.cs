@@ -34,12 +34,9 @@ public class RandomXScript : MonoBehaviour
 
     void Update()
     {
-        // Debug.Log("Total Money : " + totalMoney);
-        // Debug.Log("Current Money : " + currentMoney);
-
         Xtext.text = deltaTime.ToString("0.00") + "x";
         totalMoneyText.text = "Total Money : " + totalMoney.ToString();
-        betMoneyText.text ="Bet Money : " + currentMoney.ToString();
+        betMoneyText.text = "Bet Money : " + currentMoney.ToString();
 
         if (deltaTime <= randomNum)
         {
@@ -49,8 +46,6 @@ public class RandomXScript : MonoBehaviour
         {
             if (endOfSession == false)
             {
-                // currentMoney = 0f;
-                // getTheReward = true;
                 if (getTheReward == false)
                 {
                     totalMoney = totalMoney - currentMoney;
@@ -74,19 +69,16 @@ public class RandomXScript : MonoBehaviour
         getTheReward = true;
         addMoney = currentMoney * deltaTime;
         totalMoney = totalMoney + addMoney;
-        // currentMoney = 0;
     }
 
     IEnumerator WaitFiveSeconds()
     {
-        //yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(5);
         deltaTime = 1f;
         RandomGenerator();
         getTheReward = false;
         endOfSession = false;
         Debug.Log(randomNum);
-        yield return new WaitForSeconds(5);
-        // currentMoney = 0;
     }
 
     public void CurrentMoneyChooser100()
