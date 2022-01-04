@@ -7,13 +7,13 @@ using UnityEngine.UI;
 public class RandomXScript : MonoBehaviour
 {
     [SerializeField]
-    TextMeshProUGUI Xtext;
+    TextMeshProUGUI Xtext; //multiplier numbers
     [SerializeField]
     TextMeshProUGUI totalMoneyText;
 
     [SerializeField]
     TextMeshProUGUI betMoneyText;
-    private float deltaTime;
+    private float deltaTime; // XTextte yazan sayı
     private float timeScale = 5;
     private bool getTheReward = false;
     private bool endOfSession = false;
@@ -79,12 +79,13 @@ public class RandomXScript : MonoBehaviour
 
     IEnumerator WaitFiveSeconds()
     {
-        yield return new WaitForSeconds(5);
+        //yield return new WaitForSeconds(5);
         deltaTime = 1f;
         RandomGenerator();
         getTheReward = false;
         endOfSession = false;
         Debug.Log(randomNum);
+        yield return new WaitForSeconds(5);
         // currentMoney = 0;
     }
 
