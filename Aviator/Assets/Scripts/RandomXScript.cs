@@ -44,8 +44,8 @@ public class RandomXScript : MonoBehaviour
     void Update()
     {
         Xtext.text = deltaTime.ToString("0.00") + "x";
-        totalMoneyText.text = "Total Money : " + totalMoney.ToString();
-        betMoneyText.text = "Bet Money : " + currentMoney.ToString();
+        totalMoneyText.text = /*"Total Money : " + */totalMoney.ToString();
+        betMoneyText.text = /*"Bet Money : " + */currentMoney.ToString();
 
         if (deltaTime <= randomNum)
         {
@@ -98,7 +98,7 @@ public class RandomXScript : MonoBehaviour
         waitingForNextRound = false;
     }
 
-    public void CurrentMoneyChooser100()
+    public void CurrentMoneyChooser50()
     {
         if (waitingForNextRound == false)
             return;
@@ -107,13 +107,13 @@ public class RandomXScript : MonoBehaviour
         {
             currentMoney = 0;
         }
-        currentMoney = currentMoney + 100;
+        currentMoney = currentMoney + 50;
         add100Money = true;
         add250Money = false;
         add500Money = false;
     }
 
-    public void CurrentMoneyChooser250()
+    public void CurrentMoneyChooser100()
     {
         if (waitingForNextRound == false)
             return;
@@ -122,7 +122,7 @@ public class RandomXScript : MonoBehaviour
         {
             currentMoney = 0;
         }
-        currentMoney = currentMoney + 250;
+        currentMoney = currentMoney + 100;
         add100Money = false;
         add250Money = true;
         add500Money = false;
