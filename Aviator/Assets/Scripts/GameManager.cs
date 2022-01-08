@@ -19,13 +19,21 @@ public class GameManager : MonoBehaviour
      
 
     [Header("Buttons")]
-    [SerializeField] private GameObject oneDollarButton;
-    [SerializeField] private GameObject twoDollarButton;
-    [SerializeField] private GameObject fiveDollarButton;
-    [SerializeField] private GameObject tenDollarButton;
+    [SerializeField] private GameObject fiftyDollarsButton;
+    [SerializeField] private GameObject hundredDollarsButton;
+    [SerializeField] private GameObject fiveHundredDollarsButton;
     [SerializeField] private GameObject betButton;
     [SerializeField] private GameObject cashOutButton;
 
+    [Header("Variables")]
+    [SerializeField] private float multiplier = 1f;
+    [SerializeField] private float sessionTime;
+    [SerializeField] private float betMoney = 0f;
+    [SerializeField] private float bankMoney = 10000f;
+
+    [Header("Booleans")]
+
+    [SerializeField]
 
     private void Awake()
     {
@@ -37,9 +45,10 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
     }
 
+
     private void Start()
     {
-        roundCountDown = 15;
+        roundCountDown = 10;
         StartCoroutine(FirstCountDown());
     }
 
@@ -58,21 +67,55 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        
+    }
+
     private void StartRound()
     {
         Time.timeScale = 1;
-        oneDollarButton.GetComponent<Button>().enabled = false;
-        twoDollarButton.GetComponent<Button>().enabled = false;
-        fiveDollarButton.GetComponent<Button>().enabled = false;
-        tenDollarButton.GetComponent<Button>().enabled = false;
+        fiftyDollarsButton.GetComponent<Button>().enabled = false;
+        hundredDollarsButton.GetComponent<Button>().enabled = false;
+        fiveHundredDollarsButton.GetComponent<Button>().enabled = false;
         betButton.SetActive(false);
         cashOutButton.SetActive(true);
-        //StartMultiplier();
+        StartMultiplier();
 
     }
 
-    public void AddMoney()
+    private void StartMultiplier()
     {
+        multiplier += Time.deltaTime / 5;
+        betMoney = betMoney * multiplier;
+    }
 
+    public void bet50Dollars()
+    {
+        if (bankMoney - betMoney >= 50)
+        {
+            betMoney += 50;
+        }
+    }
+
+    public void bet100Dollars()
+    {
+        if (bankMoney - betMoney >= 100)
+        {
+            betMoney += 100;
+        }
+    }
+
+    public void bet500Dollars()
+    {
+        if (bankMoney - betMoney >= 500)
+        {
+            betMoney += 500;
+        }
+    }
+
+    public void betTotalBetMoney()
+    {
+        bankMoney -= betMoney;
     }
 }
