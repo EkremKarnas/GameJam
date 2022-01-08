@@ -285,9 +285,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 551397905}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: bet50Dollars
+      - m_Target: {fileID: 551397903}
+        m_TargetAssemblyTypeName: RandomXScript, Assembly-CSharp
+        m_MethodName: CurrentMoneyChooser50
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -489,7 +489,7 @@ GameObject:
   - component: {fileID: 326652289}
   - component: {fileID: 326652288}
   m_Layer: 5
-  m_Name: Bank Amount Text
+  m_Name: Bank Amount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -623,7 +623,7 @@ GameObject:
   - component: {fileID: 344247118}
   - component: {fileID: 344247117}
   m_Layer: 5
-  m_Name: Bet Button Image
+  m_Name: Bet Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -785,7 +785,7 @@ GameObject:
   - component: {fileID: 413311247}
   - component: {fileID: 413311246}
   m_Layer: 5
-  m_Name: Cash Out Button Image
+  m_Name: Cash Out Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1248,23 +1248,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 863c8433296fa48bfb8336306cb46a30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  betAmount: 0
   roundCountdownText: {fileID: 1785519814}
   multiplierText: {fileID: 801017704}
-  betAmountText: {fileID: 1320433432}
-  bankAmountText: {fileID: 326652288}
-  betButtonImage: {fileID: 344247117}
-  cashOutButtonImage: {fileID: 413311246}
-  fiftyDollarsButton: {fileID: 20325101}
-  hundredDollarsButton: {fileID: 1525151643}
-  fiveHundredDollarsButton: {fileID: 1338242068}
-  betButton: {fileID: 1735247834}
-  cashOutButton: {fileID: 637427671}
-  multiplier: 1
-  sessionMultiplier: 0
-  betMoney: 0
-  bettedMoney: 0
-  bankMoney: 10000
-  canBet: 1
+  fiftyDollarButton: {fileID: 20325101}
+  hundredDollarButton: {fileID: 1525151643}
+  fiveHundredDollarButton: {fileID: 1338242068}
+  betButton: {fileID: 344247115}
+  cashOutButton: {fileID: 0}
 --- !u!1 &551895575
 GameObject:
   m_ObjectHideFlags: 0
@@ -1500,7 +1491,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1547,7 +1538,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &637427672
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2881,7 +2872,7 @@ GameObject:
   - component: {fileID: 1320433433}
   - component: {fileID: 1320433432}
   m_Layer: 5
-  m_Name: Bet Amount Text
+  m_Name: Bet Amount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3086,9 +3077,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 551397905}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: bet500Dollars
+      - m_Target: {fileID: 551397903}
+        m_TargetAssemblyTypeName: RandomXScript, Assembly-CSharp
+        m_MethodName: CurrentMoneyChooser500
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4116,9 +4107,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 551397905}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: bet100Dollars
+      - m_Target: {fileID: 551397903}
+        m_TargetAssemblyTypeName: RandomXScript, Assembly-CSharp
+        m_MethodName: CurrentMoneyChooser100
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4295,7 +4286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4315,7 +4306,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: Button
 --- !u!222 &1717712032
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4407,9 +4398,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 551397905}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: betTotalBetMoney
+      - m_Target: {fileID: 551397903}
+        m_TargetAssemblyTypeName: RandomXScript, Assembly-CSharp
+        m_MethodName: CurrentMoneyChooser500
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -55,8 +55,6 @@ public class GameManager : MonoBehaviour
     {
         roundCountDown = 10;
         canBet = true;
-        canBet = false;
-        sessionMultiplier = UnityEngine.Random.Range(1f, 30f);
     }
 
     private void CountDown()
@@ -82,6 +80,8 @@ public class GameManager : MonoBehaviour
 
     private void StartRound()
     {
+        canBet = false;
+        sessionMultiplier = UnityEngine.Random.Range(1f, 30f);
         //fiftyDollarsButton.GetComponent<Button>().enabled = false;
         //hundredDollarsButton.GetComponent<Button>().enabled = false;
         //fiveHundredDollarsButton.GetComponent<Button>().enabled = false;
@@ -100,11 +100,6 @@ public class GameManager : MonoBehaviour
             multiplier += Time.deltaTime / 5;
             multiplier = Mathf.Round(multiplier * 1000.0f) * 0.001f;
             betMoney = bettedMoney * multiplier;
-        }
-
-        if(sessionMultiplier <= multiplier)
-        {
-            Time.timeScale = 0f;
         }
     }
 
