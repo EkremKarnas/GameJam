@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float betMoney = 0f;
     [SerializeField] private float bankMoney = 10000f;
 
-    [Header("Booleans")]
+    //  [Header("Booleans")]
 
     [SerializeField]
 
@@ -69,7 +69,9 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        
+        Debug.Log(betMoney);
+        Debug.Log(betAmount);
+        Debug.Log(bankMoney);
     }
 
     private void StartRound()
