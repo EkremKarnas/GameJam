@@ -21,7 +21,7 @@ public class RandomXScript : MonoBehaviour
 
     [SerializeField]
     TextMeshProUGUI betMoneyText;
-    private float deltaTime; // XTextte yazan sayı
+    private float deltaTime; // XTextte yazan sayi
     private float timeScale = 5;
     private bool getTheReward = false;
     private bool endOfSession = false;
@@ -39,10 +39,7 @@ public class RandomXScript : MonoBehaviour
     private float randomNum;
     void Start()
     {
-        // RandomGenerator();
-        // Debug.Log(randomNum);
-        // deltaTime = 1f;
-        StartCoroutine(WaitFiveSeconds());
+        StartCoroutine(WaitTenSecondsAtStart());
     }
 
 
@@ -55,23 +52,17 @@ public class RandomXScript : MonoBehaviour
         if (deltaTime <= randomNum)
         {
             deltaTime += Time.deltaTime / timeScale;
-            // cancelButton.SetActive(false); //Last Added
-            // betButton.SetActive(true); //Last Added
         }
         else
         {
             if (endOfSession == false)
             {
-                if (getTheReward == false)
-                {
-                    totalMoney = totalMoney - currentMoney;
-                }
                 endOfSession = true;
                 StartCoroutine(WaitFiveSeconds());
                 timer.SetActive(true);
                 waitingForNextRound = true;
                 isBetted = false;
-                currentMoney = 0; // Last Added
+                currentMoney = 0;
             }
         }
     }
@@ -106,80 +97,54 @@ public class RandomXScript : MonoBehaviour
         timerScript.currentTime = timerScript.startingTime;
         waitingForNextRound = false;
         isBetted = true;
+                                                                // X'lerin artmaya basladigi yer
     }
 
-    public void CurrentMoneyChooser50()
+    IEnumerator WaitTenSecondsAtStart()
+    {
+        yield return new WaitForSeconds(10);
+                                                                // X'lerin artmaya basladigi yer sadece Startta 1 defa
+    }
+
+    public void CurrentMoneyChooser50() // 50$ ekleme butonu
     {
         if (waitingForNextRound == false || isBetted == true)
             return;
 
-        // if (add100Money == false)
-        // {
-        //     currentMoney = 0;
-        // }
         if (currentMoney + 50 <= totalMoney)
         {
             currentMoney = currentMoney + 50;
         }
-        // add100Money = true;
-        // add250Money = false;
-        // add500Money = false;
     }
 
-    public void CurrentMoneyChooser100()
+    public void CurrentMoneyChooser100() // 100$ ekleme butonu
     {
         if (waitingForNextRound == false || isBetted == true)
             return;
 
-        // if (add250Money == false)
-        // {
-        //     currentMoney = 0;
-        // }
         if (currentMoney + 100 <= totalMoney)
         {
             currentMoney = currentMoney + 100;
         }
-        // add100Money = false;
-        // add250Money = true;
-        // add500Money = false;
     }
 
-    public void CurrentMoneyChooser500()
+    public void CurrentMoneyChooser500() // 500$ ekleme butonu
     {
         if (waitingForNextRound == false || isBetted == true)
             return;
 
-        // if (add500Money == false)
-        // {
-        //     currentMoney = 0;
-        // }
         if (currentMoney + 500 <= totalMoney)
         {
             currentMoney = currentMoney + 500;
         }
-        // add100Money = false;
-        // add250Money = false;
-        // add500Money = true;
     }
 
-    public void Bet()
+    public void Bet()  // Bet Butonu
     {
         if (isBetted)
             return;
 
         totalMoney = totalMoney - currentMoney;
         isBetted = true;
-        // cancelButton.SetActive(true);
-        // betButton.SetActive(false);
-
     }
-
-    // public void CancelBet()
-    // {
-    //     isBetted = false;
-    //     cancelButton.SetActive(false);
-    //     betButton.SetActive(true);
-    //     totalMoney = totalMoney + currentMoney;
-    //     currentMoney = 0;
-    // }
 }
