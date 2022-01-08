@@ -1,139 +1,149 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using TMPro;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+// using System;
+// using System.Collections;
+// using System.Collections.Generic;
+// using UnityEngine;
+// using TMPro;
+// using UnityEngine.SceneManagement;
+// using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
-{
-    public static GameManager instance;
+// public class GameManager : MonoBehaviour
+// {
+//     public static GameManager instance;
 
-    private float roundCountDown;
+//     private float roundCountDown;
 
-    [Header("Texts")]
-    [SerializeField] private TextMeshProUGUI roundCountdownText;
-    [SerializeField] private TextMeshProUGUI multiplierText;
-    [SerializeField] private TextMeshProUGUI betAmountText;
-    [SerializeField] private TextMeshProUGUI bankAmountText;
+//     [Header("Texts")]
+//     [SerializeField] private TextMeshProUGUI roundCountdownText;
+//     [SerializeField] private TextMeshProUGUI multiplierText;
+//     [SerializeField] private TextMeshProUGUI betAmountText;
+//     [SerializeField] private TextMeshProUGUI bankAmountText;
 
-    [Header("Images")]
-    [SerializeField] private Image betButtonImage;
-    [SerializeField] private Image cashOutButtonImage;
+//     [Header("Images")]
+//     [SerializeField] private Image betButtonImage;
+//     [SerializeField] private Image cashOutButtonImage;
 
-    [Header("Buttons")]
-    [SerializeField] private GameObject fiftyDollarsButton;
-    [SerializeField] private GameObject hundredDollarsButton;
-    [SerializeField] private GameObject fiveHundredDollarsButton;
-    [SerializeField] private GameObject betButton;
-    [SerializeField] private GameObject cashOutButton;
+//     [Header("Buttons")]
+//     [SerializeField] private GameObject fiftyDollarsButton;
+//     [SerializeField] private GameObject hundredDollarsButton;
+//     [SerializeField] private GameObject fiveHundredDollarsButton;
+//     [SerializeField] private GameObject betButton;
+//     [SerializeField] private GameObject cashOutButton;
 
-    [Header("Variables")]
-    [SerializeField] private float multiplier = 1f;
-    [SerializeField] private float sessionMultiplier;
-    [SerializeField] private float betMoney;
-    [SerializeField] private float bettedMoney;
-    [SerializeField] private float bankMoney = 10000f;
+//     [Header("Variables")]
+//     [SerializeField] private float multiplier = 1f;
+//     [SerializeField] private float sessionMultiplier;
+//     [SerializeField] private float betMoney;
+//     [SerializeField] private float bettedMoney;
+//     [SerializeField] private float bankMoney = 10000f;
+
+// <<<<<<< HEAD
+//     //  [Header("Booleans")]
+// =======
+
+//     [Header("Booleans")]
+//     [SerializeField] private bool canBet = true;
+// >>>>>>> 787585e2640fdc341ae807e5fc10c3a471f25110
+
+//     [SerializeField]
+
+//     private void Awake()
+//     {
+//         if(instance == null)
+//         {
+//             instance = this;
+//         }
+//     }
 
 
-    [Header("Booleans")]
-    [SerializeField] private bool canBet = true;
+//     private void Start()
+//     {
+//         roundCountDown = 10;
+//         canBet = true;
+//     }
 
-    [SerializeField]
+//     private void CountDown()
+//     {
+//         if (roundCountDown <= 0)
+//         {
+//             roundCountdownText.gameObject.SetActive(false);
+//             StartRound();
+//         }
 
-    private void Awake()
-    {
-        if(instance == null)
-        {
-            instance = this;
-        }
-    }
+//         roundCountDown -= 1 * Time.deltaTime;
+//         roundCountdownText.text = Mathf.RoundToInt(roundCountDown).ToString();
+//     }
 
+//     private void Update()
+//     {
+// <<<<<<< HEAD
+//         Debug.Log(betMoney);
+//         Debug.Log(betAmount);
+//         Debug.Log(bankMoney);
+// =======
+//         betAmountText.text = betMoney.ToString();
+//         bankAmountText.text = bankMoney.ToString();
+//         multiplierText.text = multiplier.ToString() + "x";
+//         CountDown();
 
-    private void Start()
-    {
-        roundCountDown = 10;
-        canBet = true;
-    }
+// >>>>>>> 787585e2640fdc341ae807e5fc10c3a471f25110
+//     }
 
-    private void CountDown()
-    {
-        if (roundCountDown <= 0)
-        {
-            roundCountdownText.gameObject.SetActive(false);
-            StartRound();
-        }
+//     private void StartRound()
+//     {
+//         canBet = false;
+//         sessionMultiplier = UnityEngine.Random.Range(1f, 30f);
+//         //fiftyDollarsButton.GetComponent<Button>().enabled = false;
+//         //hundredDollarsButton.GetComponent<Button>().enabled = false;
+//         //fiveHundredDollarsButton.GetComponent<Button>().enabled = false;
+//         betButton.SetActive(false);
+//         betButtonImage.gameObject.SetActive(false);
+//         cashOutButton.SetActive(true);
+//         cashOutButtonImage.gameObject.SetActive(true);
+//         StartMultiplier();
 
-        roundCountDown -= 1 * Time.deltaTime;
-        roundCountdownText.text = Mathf.RoundToInt(roundCountDown).ToString();
-    }
+//     }
 
-    private void Update()
-    {
-        betAmountText.text = betMoney.ToString();
-        bankAmountText.text = bankMoney.ToString();
-        multiplierText.text = multiplier.ToString() + "x";
-        CountDown();
+//     private void StartMultiplier()
+//     {
+//         if (sessionMultiplier > multiplier)
+//         {
+//             multiplier += Time.deltaTime / 5;
+//             multiplier = Mathf.Round(multiplier * 1000.0f) * 0.001f;
+//             betMoney = bettedMoney * multiplier;
+//         }
+//     }
 
-    }
+//     public void bet50Dollars()
+//     {
+//         if (bankMoney - betMoney >= 50 && canBet == true)
+//         {
+//             betMoney += 50;
+//         }
+//     }
 
-    private void StartRound()
-    {
-        canBet = false;
-        sessionMultiplier = UnityEngine.Random.Range(1f, 30f);
-        //fiftyDollarsButton.GetComponent<Button>().enabled = false;
-        //hundredDollarsButton.GetComponent<Button>().enabled = false;
-        //fiveHundredDollarsButton.GetComponent<Button>().enabled = false;
-        betButton.SetActive(false);
-        betButtonImage.gameObject.SetActive(false);
-        cashOutButton.SetActive(true);
-        cashOutButtonImage.gameObject.SetActive(true);
-        StartMultiplier();
+//     public void bet100Dollars()
+//     {
+//         if (bankMoney - betMoney >= 100 && canBet == true)
+//         {
+//             betMoney += 100;
+//         }
+//     }
 
-    }
+//     public void bet500Dollars()
+//     {
+//         if (bankMoney - betMoney >= 500 && canBet == true)
+//         {
+//             betMoney += 500;
+//         }
+//     }
 
-    private void StartMultiplier()
-    {
-        if (sessionMultiplier > multiplier)
-        {
-            multiplier += Time.deltaTime / 5;
-            multiplier = Mathf.Round(multiplier * 1000.0f) * 0.001f;
-            betMoney = bettedMoney * multiplier;
-        }
-    }
-
-    public void bet50Dollars()
-    {
-        if (bankMoney - betMoney >= 50 && canBet == true)
-        {
-            betMoney += 50;
-        }
-    }
-
-    public void bet100Dollars()
-    {
-        if (bankMoney - betMoney >= 100 && canBet == true)
-        {
-            betMoney += 100;
-        }
-    }
-
-    public void bet500Dollars()
-    {
-        if (bankMoney - betMoney >= 500 && canBet == true)
-        {
-            betMoney += 500;
-        }
-    }
-
-    public void betTotalBetMoney()
-    {
-        if (canBet == true)
-        {
-            bankMoney -= betMoney;
-            bettedMoney = betMoney;
-        }
-        canBet = false;
-    }
-}
+//     public void betTotalBetMoney()
+//     {
+//         if (canBet == true)
+//         {
+//             bankMoney -= betMoney;
+//             bettedMoney = betMoney;
+//         }
+//         canBet = false;
+//     }
+// }

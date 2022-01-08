@@ -7,6 +7,10 @@ using UnityEngine.UI;
 public class RandomXScript : MonoBehaviour
 {
     [SerializeField]
+    GameObject cancelButton;
+    [SerializeField]
+    GameObject betButton;
+    [SerializeField]
     GameObject timer;
     [SerializeField]
     Timer timerScript;
@@ -17,7 +21,7 @@ public class RandomXScript : MonoBehaviour
 
     [SerializeField]
     TextMeshProUGUI betMoneyText;
-    private float deltaTime; // XTextte yazan sayı
+    private float deltaTime; // XTextte yazan sayi
     private float timeScale = 5;
     private bool getTheReward = false;
     private bool endOfSession = false;
@@ -25,6 +29,7 @@ public class RandomXScript : MonoBehaviour
     private bool add250Money;
     private bool add500Money;
     private bool waitingForNextRound;
+    private bool isBetted = false;
 
     [SerializeField]
     float currentMoney;
@@ -34,18 +39,15 @@ public class RandomXScript : MonoBehaviour
     private float randomNum;
     void Start()
     {
-        // RandomGenerator();
-        // Debug.Log(randomNum);
-        // deltaTime = 1f;
-        StartCoroutine(WaitFiveSeconds());
+        StartCoroutine(WaitTenSecondsAtStart());
     }
 
 
     void Update()
     {
         Xtext.text = deltaTime.ToString("0.00") + "x";
-        totalMoneyText.text = /*"Total Money : " + */totalMoney.ToString();
-        betMoneyText.text = /*"Bet Money : " + */currentMoney.ToString();
+        totalMoneyText.text = "Total Money : " + totalMoney.ToString();
+        betMoneyText.text = "Bet Money : " + currentMoney.ToString();
 
         if (deltaTime <= randomNum)
         {
@@ -55,14 +57,12 @@ public class RandomXScript : MonoBehaviour
         {
             if (endOfSession == false)
             {
-                if (getTheReward == false)
-                {
-                    totalMoney = totalMoney - currentMoney;
-                }
                 endOfSession = true;
                 StartCoroutine(WaitFiveSeconds());
                 timer.SetActive(true);
                 waitingForNextRound = true;
+                isBetted = false;
+                currentMoney = 0;
             }
         }
     }
@@ -96,50 +96,55 @@ public class RandomXScript : MonoBehaviour
         timer.SetActive(false);
         timerScript.currentTime = timerScript.startingTime;
         waitingForNextRound = false;
+        isBetted = true;
+                                                                // X'lerin artmaya basladigi yer
     }
 
-    public void CurrentMoneyChooser50()
+    IEnumerator WaitTenSecondsAtStart()
     {
-        if (waitingForNextRound == false)
-            return;
-
-        if (add100Money == false)
-        {
-            currentMoney = 0;
-        }
-        currentMoney = currentMoney + 50;
-        add100Money = true;
-        add250Money = false;
-        add500Money = false;
+        yield return new WaitForSeconds(10);
+                                                                // X'lerin artmaya basladigi yer sadece Startta 1 defa
     }
 
-    public void CurrentMoneyChooser100()
+    public void CurrentMoneyChooser50() // 50$ ekleme butonu
     {
-        if (waitingForNextRound == false)
+        if (waitingForNextRound == false || isBetted == true)
             return;
 
-        if (add250Money == false)
+        if (currentMoney + 50 <= totalMoney)
         {
-            currentMoney = 0;
+            currentMoney = currentMoney + 50;
         }
-        currentMoney = currentMoney + 100;
-        add100Money = false;
-        add250Money = true;
-        add500Money = false;
     }
 
-    public void CurrentMoneyChooser500()
+    public void CurrentMoneyChooser100() // 100$ ekleme butonu
     {
-        if (waitingForNextRound == false)
+        if (waitingForNextRound == false || isBetted == true)
             return;
 
-        if (add500Money == false)
+        if (currentMoney + 100 <= totalMoney)
         {
-            currentMoney = 0;
+            currentMoney = currentMoney + 100;
         }
-        currentMoney = currentMoney + 500;
-        add100Money = false;
-        add250Money = false;
-        add500Money = true;
+    }
+
+    public void CurrentMoneyChooser500() // 500$ ekleme butonu
+    {
+        if (waitingForNextRound == false || isBetted == true)
+            return;
+
+        if (currentMoney + 500 <= totalMoney)
+        {
+            currentMoney = currentMoney + 500;
+        }
+    }
+
+    public void Bet()  // Bet Butonu
+    {
+        if (isBetted)
+            return;
+
+        totalMoney = totalMoney - currentMoney;
+        isBetted = true;
     }
 }
