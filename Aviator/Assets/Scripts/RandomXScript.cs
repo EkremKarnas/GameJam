@@ -24,7 +24,7 @@ public class RandomXScript : MonoBehaviour
     private float deltaTime; // XTextte yazan sayi
     private float timeScale = 5;
     private bool getTheReward = false;
-    private bool endOfSession = false;
+    //private bool endOfSession = false;
     private bool add100Money;
     private bool add250Money;
     private bool add500Money;
@@ -46,25 +46,25 @@ public class RandomXScript : MonoBehaviour
     void Update()
     {
         Xtext.text = deltaTime.ToString("0.00") + "x";
-        totalMoneyText.text = "Total Money : " + totalMoney.ToString();
-        betMoneyText.text = "Bet Money : " + currentMoney.ToString();
+        totalMoneyText.text = /*"Total Money : " +*/ totalMoney.ToString();
+        betMoneyText.text = /*"Bet Money : " + */currentMoney.ToString();
 
         if (deltaTime <= randomNum)
         {
             deltaTime += Time.deltaTime / timeScale;
         }
-        else
-        {
-            if (endOfSession == false)
-            {
-                endOfSession = true;
-                StartCoroutine(WaitFiveSeconds());
-                timer.SetActive(true);
-                waitingForNextRound = true;
-                isBetted = false;
-                currentMoney = 0;
-            }
-        }
+        //else
+        //{
+        //    if (endOfSession == false)
+        //    {
+        //        endOfSession = true;
+        //        StartCoroutine(WaitFiveSeconds());
+        //        timer.SetActive(true);
+        //        waitingForNextRound = true;
+        //        isBetted = false;
+        //        currentMoney = 0;
+        //    }
+        //}
     }
 
     void RandomGenerator()
@@ -91,7 +91,7 @@ public class RandomXScript : MonoBehaviour
         deltaTime = 1f;
         RandomGenerator();
         getTheReward = false;
-        endOfSession = false;
+        //endOfSession = false;
         Debug.Log(randomNum);
         timer.SetActive(false);
         timerScript.currentTime = timerScript.startingTime;
@@ -108,10 +108,10 @@ public class RandomXScript : MonoBehaviour
 
     public void CurrentMoneyChooser50() // 50$ ekleme butonu
     {
-        if (waitingForNextRound == false || isBetted == true)
-            return;
+        //if (waitingForNextRound == false || isBetted == true)
+        //    return;
 
-        if (currentMoney + 50 <= totalMoney)
+        if (currentMoney + 50 <= totalMoney && isBetted == false)
         {
             currentMoney = currentMoney + 50;
         }
@@ -119,10 +119,10 @@ public class RandomXScript : MonoBehaviour
 
     public void CurrentMoneyChooser100() // 100$ ekleme butonu
     {
-        if (waitingForNextRound == false || isBetted == true)
-            return;
+        //if (waitingForNextRound == false || isBetted == true)
+        //    return;
 
-        if (currentMoney + 100 <= totalMoney)
+        if (currentMoney + 100 <= totalMoney && isBetted == false)
         {
             currentMoney = currentMoney + 100;
         }
@@ -130,10 +130,10 @@ public class RandomXScript : MonoBehaviour
 
     public void CurrentMoneyChooser500() // 500$ ekleme butonu
     {
-        if (waitingForNextRound == false || isBetted == true)
-            return;
+       // if (waitingForNextRound == false || isBetted == true)
+       //     return;
 
-        if (currentMoney + 500 <= totalMoney)
+        if (currentMoney + 500 <= totalMoney && isBetted == false)
         {
             currentMoney = currentMoney + 500;
         }
