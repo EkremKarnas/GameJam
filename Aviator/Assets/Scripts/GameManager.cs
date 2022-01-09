@@ -52,8 +52,9 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        betAmountText.text = betMoney.ToString();
-        bankAmountText.text = bankMoney.ToString();
+        bankMoney = Mathf.Round(bankMoney * 1000.0f) * 0.001f;
+        betAmountText.text = betMoney.ToString() + "$";
+        bankAmountText.text = bankMoney.ToString() + "$";
         multiplierText.text = multiplier.ToString() + "x";
         CountDown();
 
@@ -94,6 +95,7 @@ public class GameManager : MonoBehaviour
         if(sessionMultiplier <= multiplier)
         {
             multiplier = Mathf.Round(multiplier * 1000.0f) * 0.001f;
+            cashOutButton.SetActive(false);
             virtualCam2.Follow = null;
             virtualCam2.LookAt = null;
             flewAwayText.gameObject.SetActive(true);
